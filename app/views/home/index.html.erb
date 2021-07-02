@@ -1,1 +1,9 @@
 <h1> Welcome to Cafeteria-Management </h1>
+    <% if flash[:notice] %>
+    <div class= "alert alert-success"><%= flash[:notice] %></div>
+    <% end %>
+
+<% if @user %>
+    Logged in as: <%= @user.first_name + " " + @user.last_name%>
+    <%= button_to "Logout", logout_path, class:"btn btn-primary", method:"delete" %>
+<% end %>
