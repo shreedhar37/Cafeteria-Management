@@ -1,3 +1,4 @@
+<div class="m-auto w-auto">
 <h1> Sign-In </h1>
 
 <% if flash[:alert] %>
@@ -8,16 +9,17 @@
 
 <%= form_with url: users_sign_in_path  do |form| %>
     <div class="mb-3" >
-    <%= form.label :email %>
-    <%= form.email_field :email, class:"form-control", placeholder:"stevejobs@apple.com" %>
+    <%= form.label :email,  class:"mb-2" %>
+    <%= form.email_field :email, class:"form-control w-auto", placeholder:"stevejobs@apple.com" %>
     </div>
 
     <div class="mb-3">
-    <%= form.label :password %>
-    <%= form.password_field :password, class:"form-control", placeholder:"password"%>
+    <%= form.label :password,  class:"mb-2" %>
+    <%= form.password_field :password, class:"form-control w-auto", placeholder:"password"%>
     </div>
 
     <div class="mb-3">
     <%=  form.submit "Sign-In", class: "btn btn-primary" %>
     </div>
 <% end %>
+</div>
