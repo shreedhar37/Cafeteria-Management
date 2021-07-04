@@ -1,15 +1,22 @@
-<div class="m-auto w-auto">
-<h1> Sign-In </h1>
+<div class="text-center m-auto w-auto">
+        <h1> Sign-In </h1>
+</div>
 
-<% if flash[:alert] %>
-    <div class="alert alert-danger">
-        <%= flash[:alert] %>
-    </div>
-<% end %>
+
+
+
+<div class="d-flex align-items center  justify-content-center m-auto w-auto">
 
 <% path = request.path == "/users/sign_in" ? users_sign_in_path : owners_sign_in_path %>
 
 <%= form_with url: path  do |form| %>
+
+    <% if flash[:alert] %>
+        <div class=" alert alert-danger text-center m-auto w-auto" >
+                <%= flash[:alert] %>
+        </div>
+    <% end %>
+
     <div class="mb-3" >
     <%= form.label :email,  class:"mb-2" %>
     <%= form.email_field :email, class:"form-control w-auto", placeholder:"stevejobs@apple.com" %>
