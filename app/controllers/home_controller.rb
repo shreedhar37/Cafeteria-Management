@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def index
-    if session[:user_id]
-      @user = User.find_by(id: session[:user_id])
+    if session[:current_user_id]
+      @user = User.find_by(id: session[:current_user_id])
     end
   end
 end
