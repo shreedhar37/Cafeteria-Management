@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     if user.present? && user.authenticate(params[:password])
       session[:current_user_id] = user.id
       redirect_path = request.path == "/users/sign_in" ? "/" : "/manage"
-      redirect_to redirect_path, notice: "Log-In successful."
+      redirect_to redirect_path
     else
       flash[:alert] = "Invalid email or password."
       render :new

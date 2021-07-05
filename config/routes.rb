@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources :users
   delete "logout", to: "sessions#destroy"
   get "/manage", to: "manage#index"
+  get "/manage/show", to: "manage#show"
 end
