@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   post "owners/sign_in", to: "sessions#create"
   resources :users
   delete "logout", to: "sessions#destroy"
+  get "/manage", to: "manage#index"
 end
