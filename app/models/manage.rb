@@ -1,2 +1,0 @@
-class Manage < ApplicationRecord
-end

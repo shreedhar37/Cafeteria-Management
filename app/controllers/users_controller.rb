@@ -1,7 +1,23 @@
-#  customers_controller.rb
 class UsersController < ApplicationController
   def new
     @user = User.new
+  end
+
+  def index
+    if Current.user
+      render :"index"
+    else
+      redirect_to "/"
+    end
+  end
+
+  def show
+    if Current.owner
+      @users = User.all
+      render :"owners/show"
+    else
+      redirect_to "/"
+    end
   end
 
   def create

@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   resources :home
   get "users/sign_in", to: "sessions#new"
   post "users/sign_in", to: "sessions#create"
+  get "users/show", to: "users#show"
   get "owners/sign_in", to: "sessions#new"
   post "owners/sign_in", to: "sessions#create"
   resources :users
   delete "logout", to: "sessions#destroy"
-  get "/manage", to: "manage#index"
-  get "/manage/show", to: "manage#show"
+  resources :owners
 end
