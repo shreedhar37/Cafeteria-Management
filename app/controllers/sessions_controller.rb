@@ -3,10 +3,10 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = request.path == "/users/sign_in" ? User.find_by(email: params[:email]) : Owner.find_by(email: params[:email])
-    if user.present? && user.authenticate(params[:password])
-      session[:current_user_id] = user.id
-      redirect_path = request.path == "/users/sign_in" ? "/" : "/owners"
+    role = request.path == users_sign_in_path ? User.find_by(email: params[:email]) : Owner.find_by(email: params[:email])
+    if role.present? && role.authenticate(params[:password])
+      session[:current_user_id] = role.id
+      redirect_path = request.path == users_sign_in_path ? "/users/index" : "/owners"
       redirect_to redirect_path
     else
       flash[:alert] = "Invalid email or password."

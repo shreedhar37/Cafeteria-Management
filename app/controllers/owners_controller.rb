@@ -10,4 +10,12 @@ class OwnersController < ApplicationController
       redirect_to "/owners/sign_in"
     end
   end
+
+  def delete_user
+    if Current.owner
+      render :delete
+    else
+      redirect_to "/"
+    end
+  end
 end

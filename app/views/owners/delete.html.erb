@@ -1,0 +1,35 @@
+<div class="container text-center">
+    <% if flash[:notice] %>
+            <div class= "alert alert-success ">
+                    <%= flash[:notice] %>
+            </div>
+            <% flash.clear %>
+    <% end %>
+</div>
+
+<div class="d-flex align-items center  justify-content-center m-auto w-auto">
+
+
+<%= form_with  url: "/users/destroy", method:"delete" do |form| %>
+    <% if flash[:error] %>
+            <div class= "alert alert-danger ">
+                    <%= flash[:error] %>
+            </div>
+            <% flash.clear %>
+    <% end %>
+
+    <div class="mb-3" >
+    <%= form.label :id, "Enter user id" , class:"mb-2" %>
+    <%= form.number_field :id,
+                                                        class:"form-control w-auto",
+                                                        placeholder:"5",
+                                                        :required => 'required'
+     %>
+    </div>
+
+    <div class="mb-3">
+    <%=  form.submit "Delete", class: "btn btn-danger" %>
+    </div>
+<% end %>
+
+</div>
