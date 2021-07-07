@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    if Current.user
+    if @owner
       render :index
     else
       redirect_to "/users/sign_in"
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if Current.owner
+    if @owner
       id = params[:id]
       user = User.find_by(id: id)
       if user.present?
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    if Current.owner
+    if @owner
       @users = User.all
       render :"owners/display_user"
     else
@@ -40,8 +40,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      session[:current_user_id] = @user.id
-      redirect_to "/", notice: "Successfully created your account."
+      session[:current_user_id] = @user.id if @owner.nil?
+      flash[:notice] = "Successfully created new account."
+      render :index if session[:current_user_id]; render :new if @owner
     else
       render :new
     end

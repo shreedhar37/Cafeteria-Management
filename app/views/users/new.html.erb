@@ -1,10 +1,20 @@
+<% if !@owner %>
 <div class ="container text-center ">
 <h1> Sign-Up </h1>
+</div>
+<% end %>
+
+<div class="container text-center ">
+    <% if flash[:notice] %>
+    <div class= "alert alert-success ">
+            <%= flash[:notice] %>
+    </div>
+            <% flash.clear %>
+    <% end %>
 </div>
 
 <div class=" d-flex align-items-center  justify-content-center ">
 <%= form_with  model: @user, url: users_path do |form|%>
-
     <% if @user.errors.any? %>
         <div class="alert alert-danger">
             <% @user.errors.full_messages.each do |message| %>
@@ -24,22 +34,26 @@
     </div>
 
     <div class="mb-3" >
-    <%= form.label :email, class:"mb-1" %>
-    <%= form.email_field :email, class:"form-control w-auto", placeholder:"stevejobs@apple.com" %>
+            <%= form.label :email, class:"mb-1" %>
+            <%= form.email_field :email, class:"form-control w-auto", placeholder:"stevejobs@apple.com" %>
     </div>
 
     <div class="mb-3">
-    <%= form.label :password, class:"mb-1" %>
-    <%= form.password_field :password, class:"form-control w-auto", placeholder:"password"%>
+            <%= form.label :password, class:"mb-1" %>
+            <%= form.password_field :password, class:"form-control w-auto", placeholder:"password"%>
     </div>
 
     <div class="mb-3">
-    <%= form.label :confirm_password,  class:"mb-1" %>
-    <%= form.password_field :password_confirmation, class:"form-control w-auto", placeholder:"password" %>
+            <%= form.label :confirm_password,  class:"mb-1" %>
+            <%= form.password_field :password_confirmation, class:"form-control w-auto", placeholder:"password" %>
     </div>
 
     <div class="mb-3">
-    <%=  form.submit "Sign-Up", class: "btn btn-primary" %>
+            <% if @owner %>
+                <%=  form.submit "Create", class: "btn btn-success" %>
+            <% else %>
+                <%=  form.submit "Sign-Up", class: "btn btn-primary" %>
+            <% end %>
     </div>
 
 <% end %>

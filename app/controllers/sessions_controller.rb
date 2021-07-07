@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   def create
     role = request.path == users_sign_in_path ? User.find_by(email: params[:email]) : Owner.find_by(email: params[:email])
     if role.present? && role.authenticate(params[:password])
-      session[:current_user_id] = role.id
+      session[:current_user_id] = role.id if role.role == "User"; session[:current_owner_id] = role.id if role.role == "Owner"
       redirect_path = request.path == users_sign_in_path ? "/users/index" : "/owners"
       redirect_to redirect_path
     else
@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:current_user_id] = nil
+    session[:current_user_id] = nil if @user; session[:current_owner_id] = nil if @owner
     redirect_to "/"
   end
 end

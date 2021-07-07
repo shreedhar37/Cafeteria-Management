@@ -10,9 +10,9 @@
             </li>
             </ul>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-               <% if Current.user || Current.owner  %>
+               <% if session[:current_user_id] ||session[:current_owner_id]  %>
                       <li class="nav-item">
-                          <% role = Current.user.present? ? Current.user : Current.owner %>
+                          <% role = session[:current_user_id].present? ? @user : @owner %>
                           <span class="navbar-text "> <%= role.first_name %> </span>
                       </li>
                           <li class="nav-item">

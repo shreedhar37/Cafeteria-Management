@@ -28,7 +28,7 @@
     </div>
 
     <div class="mb-3">
-    <%=  form.submit "Delete", class: "btn btn-danger" %>
+    <%=  form.submit "Delete",  data: { confirm: "Are you sure?"},  class: "btn btn-danger" %>
     </div>
 <% end %>
 

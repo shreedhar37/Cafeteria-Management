@@ -4,7 +4,7 @@ class OwnersController < ApplicationController
   end
 
   def index
-    if Current.owner
+    if @owner
       render :index
     else
       redirect_to "/owners/sign_in"
@@ -12,7 +12,7 @@ class OwnersController < ApplicationController
   end
 
   def delete_user
-    if Current.owner
+    if @owner
       render :delete
     else
       redirect_to "/"
