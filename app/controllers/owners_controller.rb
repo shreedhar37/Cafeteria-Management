@@ -13,7 +13,15 @@ class OwnersController < ApplicationController
 
   def delete_user
     if @owner
-      render :delete
+      render :delete_user
+    else
+      redirect_to "/"
+    end
+  end
+
+  def update_user
+    if @owner
+      render :update_user
     else
       redirect_to "/"
     end

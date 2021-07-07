@@ -1,0 +1,54 @@
+<div class="container text-center ">
+    <% if flash[:notice] %>
+    <div class= "alert alert-success ">
+            <%= flash[:notice] %>
+    </div>
+            <% flash.clear %>
+    <% end %>
+</div>
+
+<div class=" d-flex align-items-center  justify-content-center ">
+<%= form_with  url: "/users/update",  method:"put" do |form|%>
+    <% if flash[:error] %>
+            <div class= "alert alert-danger ">
+                    <%= flash[:error] %>
+            </div>
+            <% flash.clear %>
+    <% end %>
+
+    <div class="mb-3 ">
+          <%= form.label :ID, class:"mb-1" %>
+          <%= form.number_field :id, class: "form-control w-auto", placeholder: "5",   :required => 'required' %>
+    </div>
+
+    <div class="mb-3 ">
+          <%= form.label :first_name, class:"mb-1" %>
+          <%= form.text_field :first_name, class: "form-control w-auto", placeholder: "Steve",   :required => 'required' %>
+    </div>
+
+    <div class="mb-3">
+        <%= form.label :last_name, class:"mb-1" %>
+        <%= form.text_field :last_name, class: "form-control w-auto", placeholder:"Jobs",   :required => 'required' %>
+    </div>
+
+    <div class="mb-3" >
+            <%= form.label :email, class:"mb-1" %>
+            <%= form.email_field :email, class:"form-control w-auto", placeholder:"stevejobs@apple.com", :required => 'required' %>
+    </div>
+
+  <div class="mb-3">
+            <%= form.label :password, class:"mb-1" %>
+            <%= form.password_field :password, class:"form-control w-auto", placeholder:"password", :required => 'required'%>
+    </div>
+
+    <div class="mb-3">
+            <%= form.label :confirm_password,  class:"mb-1" %>
+            <%= form.password_field :password_confirmation, class:"form-control w-auto", placeholder:"password", :required => 'required' %>
+    </div>
+
+    <div class="mb-3">
+         <%=  form.submit "Update", data: { confirm: "Are you sure?"}, class: "btn btn-warning" %>
+    </div>
+
+<% end %>
+</div>

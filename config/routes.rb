@@ -10,8 +10,11 @@ Rails.application.routes.draw do
   get "owners/sign_in", to: "sessions#new"
   post "owners/sign_in", to: "sessions#create"
 
-  get "users/destroy", to: "owners#delete_user"
+  get "users/delete_user", to: "owners#delete_user"
   delete "users/destroy", to: "users#destroy"
+
+  get "users/update_user", to: "owners#update_user"
+  put "users/update", to: "users#update"
 
   resources :users
   resources :owners

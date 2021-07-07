@@ -18,10 +18,10 @@ class UsersController < ApplicationController
       if user.present?
         user.destroy
         flash[:notice] = "User deleted Successfully"
-        render :"owners/delete"
+        render :"owners/delete_user"
       else
         flash[:error] = "Unable to delete the user. Please check the id."
-        render :"owners/delete"
+        render :"owners/delete_user"
       end
     else
       redirect_to "/"
@@ -32,6 +32,32 @@ class UsersController < ApplicationController
     if @owner
       @users = User.all
       render :"owners/display_user"
+    else
+      redirect_to "/"
+    end
+  end
+
+  def update
+    if @owner
+      id = params[:id]
+      user = User.find_by(id: id)
+      if user.present?
+        user.first_name = params[:first_name].capitalize
+        user.last_name = params[:last_name].capitalize
+        user.email = params[:email]
+        user.password = params[:password]
+        user.password_confirmation = params[:password_confirmation]
+        if user.save
+          flash[:notice] = "User updated successfully."
+          render :"owners/update_user"
+        else
+          flash[:error] = "password confirmation doesn't match with password."
+          render :"owners/update_user"
+        end
+      else
+        flash[:error] = "Unable to find user. Please check the id."
+        render :"owners/update_user"
+      end
     else
       redirect_to "/"
     end
