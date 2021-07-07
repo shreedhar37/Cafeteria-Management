@@ -1,8 +1,7 @@
-<% if !@owner %>
 <div class ="container text-center ">
 <h1> Sign-Up </h1>
 </div>
-<% end %>
+
 
 <div class="container text-center ">
     <% if flash[:notice] %>
@@ -49,11 +48,7 @@
     </div>
 
     <div class="mb-3">
-            <% if @owner %>
-                <%=  form.submit "Create", class: "btn btn-success" %>
-            <% else %>
-                <%=  form.submit "Sign-Up", class: "btn btn-primary" %>
-            <% end %>
+         <%=  form.submit "Sign-Up", class: "btn btn-primary" %>
     </div>
 
 <% end %>

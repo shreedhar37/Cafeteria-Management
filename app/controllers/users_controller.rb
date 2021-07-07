@@ -40,9 +40,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      session[:current_user_id] = @user.id if @owner.nil?
+      session[:current_user_id] = @user.id
       flash[:notice] = "Successfully created new account."
-      render :index if session[:current_user_id]; render :new if @owner
+      render :index
     else
       render :new
     end

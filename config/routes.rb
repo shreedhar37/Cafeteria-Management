@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   get "users/destroy", to: "owners#delete_user"
   delete "users/destroy", to: "users#destroy"
 
-  get "owners/create_user", to: "owners#create_user"
   resources :users
   resources :owners
 
