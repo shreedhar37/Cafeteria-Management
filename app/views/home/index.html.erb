@@ -10,46 +10,24 @@
     <% end %>
 </div>
 
-<div>
-    <p>
-        <button class="btn btn-warning"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapseExample"
-                        aria-expanded="false"
-                        aria-controls="collapseExample"
-        >
-            Cakes
-        </button>
-    </p>
-    <div class="collapse card" id="collapseExample">
-                <div class="d-flex card-body">
-                                <div >
-                                        <%= image_tag "/assets/cake.jpg",class:" cards-image img-responsive rounded" %>
-                                        <p class="text cards-description">
-                                            Cake is a form of sweet food made from flour, sugar, and other ingredients, that is usually baked.
-                                            The most commonly used cake ingredients include flour, sugar, eggs, butter or oil or margarine,
-                                            a liquid, and a leavening agent, such as baking soda or baking powder.
-                                        </p>
-                                </div>
-
-                                <div>
-                                <%= image_tag "/assets/cake.jpg",class:" cards-image img-responsive rounded" %>
-                                <p class="text cards-description">
-                                    Cake is a form of sweet food made from flour, sugar, and other ingredients, that is usually baked.
-                                    The most commonly used cake ingredients include flour, sugar, eggs, butter or oil or margarine,
-                                    a liquid, and a leavening agent, such as baking soda or baking powder.
-                                </p>
-                                </div>
-
-                                <div>
-                                <%= image_tag "/assets/cake.jpg",class:" cards-image img-responsive rounded" %>
-                                <p class="text cards-description">
-                                    Cake is a form of sweet food made from flour, sugar, and other ingredients, that is usually baked.
-                                    The most commonly used cake ingredients include flour, sugar, eggs, butter or oil or margarine,
-                                    a liquid, and a leavening agent, such as baking soda or baking powder.
-                                </p>
-                                </div>
-                </div>
-    </div>
-</div>
+<%= render partial: "shared/menucard.html.erb",
+                         :locals => {
+                        card_id: "first",
+                        menu_category:"Cake",
+                        menu_category_name:"Cup Cakes"
+                        }
+%>
+<%= render partial: "shared/menucard.html.erb",
+                         :locals => {
+                        card_id: "first",
+                        menu_category:"Drink",
+                        menu_category_name:"Cold Drinks"
+                        }
+%>
+<%= render partial: "shared/menucard.html.erb",
+                         :locals => {
+                        card_id: "first",
+                        menu_category:"Burger",
+                        menu_category_name:"Veg"
+                        }
+%>

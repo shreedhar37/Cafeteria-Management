@@ -1,9 +1,12 @@
+.cards-box{
+  margin: 0 auto;
+  max-width: 1150px;
+}
 .cards {
   display: flex;
   margin:2.5rem;
   height:400px;
   border-radius: 1.25rem;
-  justify-content: space-around;
 
 }
 
@@ -17,5 +20,12 @@
   margin-top: 1.5rem;
   margin-left:2rem;
   width: 300px;
-  text-align: justify;
+}
+
+ .cards-amount{
+ text-align: center;
+}
+
+.add-label{
+  margin-right:12px;
 }
