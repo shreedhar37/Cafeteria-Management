@@ -1,0 +1,59 @@
+<div class= "cards-box">
+    <p>
+        <button class="btn btn-dark"
+                        type="button"
+                        data-bs-toggle="collapse"
+                         data-bs-target= "#collapseExample"
+                        aria-expanded="false"
+                        aria-controls="collapseExample"
+        >
+            Cake
+        </button>
+    </p>
+
+<% @menu_items.each do |menu_item| %>
+    <div class="collapse card" id="collapseExample"  >
+        <p>
+            <button class="btn btn-warning"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target= <%="#"+  menu_item.name  %>
+                            aria-expanded="false"
+                            aria-controls=<%= menu_item.name %>
+            >
+            <%= menu_item.name %>
+            </button>
+        </p>
+    </div>
+
+
+
+    <div class="collapse card" id=<%= menu_item.name%> >
+                <div class="d-flex card-body flex-wrap ">
+                                <div class="cards-content" >
+
+                                        <strong>
+                                            <p class="text cards-description">
+                                                    <%=  menu_item.description %>
+                                            </p>
+                                        </strong>
+
+                                        <%= image_tag "/assets/cake.jpg",class:" cards-image img-responsive rounded" %>
+
+                                        <strong>
+                                            <p class="text-center cards-description">
+                                                Amount : <%= menu_item.price %>
+                                            </p>
+                                        </strong>
+
+                                        <strong>
+                                            <p class="cards-amount">
+                                                <span class="add-label"> Add</span>
+                                                <input type="number", min="0"/>
+                                            </p>
+                                        </strong>
+                                </div>
+                </div>
+    </div>
+<% end %>
+</div>

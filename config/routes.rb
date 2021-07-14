@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get "/" => "home#index"
   resources :home
-
   get "users/sign_in", to: "sessions#new"
   post "users/sign_in", to: "sessions#create"
   get "users/show", to: "users#show"
@@ -16,6 +15,7 @@ Rails.application.routes.draw do
   get "users/update_user", to: "owners#update_user"
   put "users/update", to: "users#update"
 
+  resources :menu_items
   resources :users
   resources :owners
 
