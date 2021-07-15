@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get "users/update_user", to: "owners#update_user"
   put "users/update", to: "users#update"
 
-  resources :menu_items
+  resources :submenu_items
   resources :users
   resources :owners
 

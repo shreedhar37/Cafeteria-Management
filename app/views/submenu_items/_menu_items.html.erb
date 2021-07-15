@@ -7,42 +7,42 @@
                         aria-expanded="false"
                         aria-controls="collapseExample"
         >
-            Cake
+            <%= menu_category_name %>
         </button>
     </p>
 
-<% @menu_items.each do |menu_item| %>
-    <div class="collapse card" id="collapseExample"  >
+<% @menu_items.order(:name).each do |menu_item| %>
+<div class="collapse card " id="collapseExample"  >
         <p>
             <button class="btn btn-warning"
                             type="button"
                             data-bs-toggle="collapse"
-                            data-bs-target= <%="#"+  menu_item.name  %>
+                            data-bs-target= <%="#"+  menu_item.name + menu_item.id.to_s %>
                             aria-expanded="false"
-                            aria-controls=<%= menu_item.name %>
+                            aria-controls=<%= menu_item.name + menu_item.id.to_s   %>
             >
             <%= menu_item.name %>
             </button>
         </p>
-    </div>
+</div>
 
-
-
-    <div class="collapse card" id=<%= menu_item.name%> >
+<% @submenu_items.order(:price).each do | submenu_item|  %>
+ <% if menu_item.id == submenu_item.menu_item_id %>
+    <div class="collapse  menu_item card"
+            id=<%=  menu_item.name + submenu_item.menu_item_id.to_s  %>
+    >
                 <div class="d-flex card-body flex-wrap ">
                                 <div class="cards-content" >
-
+                                        <%= image_tag "/assets/cake.jpg",class:" cards-image img-responsive rounded" %>
                                         <strong>
                                             <p class="text cards-description">
-                                                    <%=  menu_item.description %>
+                                                    <%=  submenu_item.description %>
                                             </p>
                                         </strong>
 
-                                        <%= image_tag "/assets/cake.jpg",class:" cards-image img-responsive rounded" %>
-
                                         <strong>
                                             <p class="text-center cards-description">
-                                                Amount : <%= menu_item.price %>
+                                                Amount : $ <%= submenu_item.price %>
                                             </p>
                                         </strong>
 
@@ -55,5 +55,7 @@
                                 </div>
                 </div>
     </div>
+<% end %>
+<% end %>
 <% end %>
 </div>

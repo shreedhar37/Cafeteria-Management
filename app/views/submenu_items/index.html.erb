@@ -1,10 +1,13 @@
 
-
-<%= render partial: "menu_items/menu_items.html.erb",
+<% @menu_categories.each do | menu_category |%>
+<%= render partial: "submenu_items/menu_items.html.erb",
                          :locals => {
-                        menu_category:"Cake"
+                        menu_category_id: menu_category.id,
+                        menu_category_name: menu_category.name
+
                         }
 %>
+<% end %>
 
 <%# <%= render partial: "menu_items/menu_items.html.erb",
                          :locals => {

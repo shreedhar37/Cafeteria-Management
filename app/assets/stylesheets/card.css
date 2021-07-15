@@ -29,3 +29,7 @@
 .add-label{
   margin-right:12px;
 }
+
+.menu_item{
+  max-width: min-content;
+}
