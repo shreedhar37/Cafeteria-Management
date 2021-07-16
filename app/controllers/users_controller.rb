@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    if @owner
+    if @user
       render :index
     else
       redirect_to "/users/sign_in"

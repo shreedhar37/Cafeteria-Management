@@ -1,8 +1,8 @@
 class HomeController < ApplicationController
   def index
     if @user || @owner
-      path = @user.present? ? "users/index" : "owners/index"
-      render path
+      path = @user.present? ? "/submenu_items" : "owners/index"
+      redirect_to path
     else
       render :index
     end

@@ -3,6 +3,6 @@ class SubmenuItemsController < ApplicationController
     @menu_items = MenuItem.all
     @menu_categories = MenuCategory.all
     @submenu_items = SubmenuItem.all
-    render "index"
+    render :"users/index"
   end
 end
