@@ -1,11 +1,17 @@
 <div class="container text-center ">
     <% if flash[:alert] %>
-    <div class= "alert alert-success ">
+    <div class= "alert alert-danger ">
             <%= flash[:alert] %>
     </div>
             <% flash.clear %>
+    <% elsif flash[:notice] %>
+    <div class= "alert alert-success ">
+            <%= flash[:notice] %>
+            <% flash.clear %>
+    </div>
     <% end %>
 </div>
+
 
 
 <div class= "cards-box">

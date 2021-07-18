@@ -11,16 +11,21 @@
             </ul>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
                <% if session[:current_user_id] ||session[:current_owner_id]  %>
-                      <li class="nav-item">
-
                           <% role = session[:current_user_id].present? ? @user : @owner %>
-                          <span class="navbar-text "> <%= role.first_name %></span>
-                      </li>
+                          <% if role.role == "User" %>
+                                <li class="nav-item">
+                                    <%= link_to "My Cart",  "carts/" + session[:current_user_id].to_s , class:"btn btn-dark"%>
+                                </li>
+                          <% end %>
+
                           <li class="nav-item">
-                        <%= button_to "Logout", logout_path, class:"btn btn-primary", method:"delete" %>
-                      </li>
+                              <span class="navbar-text "> <%= role.first_name %></span>
+                          </li>
+                          <li class="nav-item">
+                            <%= button_to "Logout", logout_path, class:"btn btn-danger", method:"delete" %>
+                          </li>
                   </ul>
-              <% else %>
+            <% else %>
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <%= link_to "Sign-Up", "/users/new", class:"nav-link" %>

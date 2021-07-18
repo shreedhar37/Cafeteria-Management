@@ -1,7 +1,21 @@
-<div class="table-responsive">
+<div class="container text-center ">
+    <% if flash[:alert] %>
+    <div class= "alert alert-danger ">
+            <%= flash[:alert] %>
+    </div>
+            <% flash.clear %>
+    <% elsif flash[:notice] %>
+    <div class= "alert alert-success ">
+            <%= flash[:notice] %>
+            <% flash.clear %>
+    </div>
+    <% end %>
+</div>
+
+<div class="table-responsive ">
   <table class="table table-hover table-bordered ">
         <tr>
-        <th>Order Item Name</th>
+        <th>Item Name</th>
         <th>Quantity</th>
         <th>Price</th>
         <th>Added on</th>
@@ -11,7 +25,14 @@
           <td><%= item.submenu_items_description %></td>
           <td><%= item.quantity.to_s %></td>
           <td><%=  "$" + item.submenu_item_price.to_s %></td>
-          <td><%= item.updated_at.to_s(:long_ordinal) + " IST" %></td>
+          <td>
+                <%= item.updated_at.to_s(:long_ordinal) + " IST" %>
+                <%= button_to  "Remove",
+                                            "/carts/" + item.id.to_s,
+                                            class:"m-2 btn btn-danger",
+                                            data: { confirm: "Are you sure?"},
+                                            method:"delete" %>
+          </td>
         </tr>
   <% end%>
   </table>
