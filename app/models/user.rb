@@ -6,6 +6,7 @@
 
 class User < ApplicationRecord
   has_secure_password
-
+  has_many :order
+  has_many :cart
   validates :email, :password, presence: true
 end

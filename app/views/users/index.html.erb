@@ -7,11 +7,15 @@
     <% end %>
 </div>
 
+
+
 <% @menu_categories.each do | menu_category |%>
 <%= render partial: "submenu_items/menu_items.html.erb",
                          :locals => {
                         menu_category_id: menu_category.id,
-                        menu_category_name: menu_category.name
+                        menu_category_name: menu_category.name,
+                        menu_items: @menu_items,
+                        submenu_items: @submenu_items
 
                         }
 %>

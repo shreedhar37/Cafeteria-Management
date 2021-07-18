@@ -68,7 +68,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:current_user_id] = @user.id
       flash[:notice] = "Successfully created new account."
-      render :index
+      redirect_to submenu_items_path
     else
       render :new
     end

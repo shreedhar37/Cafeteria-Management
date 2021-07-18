@@ -1,5 +1,5 @@
 .cards-box{
-  margin: 0 auto;
+
   max-width: 1150px;
 }
 .cards {
@@ -26,10 +26,13 @@
  text-align: center;
 }
 
-.add-label{
-  margin-right:12px;
+.add-cart-form{
+  margin-left: 2rem;
 }
-
 .menu_item{
   max-width: min-content;
+}
+
+.quantity{
+  width:5rem;
 }

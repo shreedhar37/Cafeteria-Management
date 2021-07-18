@@ -1,18 +1,28 @@
+<div class="container text-center ">
+    <% if flash[:alert] %>
+    <div class= "alert alert-success ">
+            <%= flash[:alert] %>
+    </div>
+            <% flash.clear %>
+    <% end %>
+</div>
+
+
 <div class= "cards-box">
     <p>
         <button class="btn btn-dark"
                         type="button"
                         data-bs-toggle="collapse"
-                         data-bs-target= "#collapseExample"
+                         data-bs-target= <%= "#" + menu_category_name  + menu_category_id.to_s %>
                         aria-expanded="false"
-                        aria-controls="collapseExample"
+                        aria-controls=<%= "#" + menu_category_name  + menu_category_id.to_s %>
         >
             <%= menu_category_name %>
         </button>
     </p>
 
-<% @menu_items.order(:name).each do |menu_item| %>
-<div class="collapse card " id="collapseExample"  >
+<% menu_items.order(:name).each do |menu_item| %>
+<div class="collapse card " id=<%= menu_category_name  + menu_category_id.to_s %>>
         <p>
             <button class="btn btn-warning"
                             type="button"
@@ -26,7 +36,7 @@
         </p>
 </div>
 
-<% @submenu_items.order(:price).each do | submenu_item|  %>
+<% submenu_items.order(:price).each do | submenu_item|  %>
  <% if menu_item.id == submenu_item.menu_item_id %>
     <div class="collapse  menu_item card"
             id=<%=  menu_item.name + submenu_item.menu_item_id.to_s  %>
@@ -35,27 +45,42 @@
                                 <div class="cards-content" >
                                         <%= image_tag "/assets/cake.jpg",class:" cards-image img-responsive rounded" %>
                                         <strong>
-                                            <p class="text cards-description">
+                                            <p id="description" class= "text cards-description"  >
                                                     <%=  submenu_item.description %>
                                             </p>
-                                        </strong>
 
-                                        <strong>
-                                            <p class="text-center cards-description">
-                                                Amount : $ <%= submenu_item.price %>
+                                            <p  class="text  cards-description">
+                                                Amount : $  <span id="price"> <%= submenu_item.price %> </span>
+
+
                                             </p>
-                                        </strong>
 
-                                        <strong>
                                             <p class="cards-amount">
-                                                <span class="add-label"> Add</span>
-                                                <input type="number", min="0"/>
+                                                    <%= form_with model:@cart, url: "/carts", class: "add-cart-form" do |form| %>
+                                                                <%= form.hidden_field :user_id, value: session[:current_user_id] %>
+                                                                <%= form.hidden_field :submenu_items_id, value:  submenu_item.id %>
+                                                                <%= form.hidden_field :submenu_items_description, value:  submenu_item.description %>
+                                                                <%= form.hidden_field :submenu_items_description, value:  submenu_item.description %>
+                                                                <%= form.label :Quantity, class:"mb-1" %>
+                                                                <%= form.number_field :quantity, class:"quantity", min:1, :required => 'required' %>
+                                                                <%= form.hidden_field :submenu_item_price, value: submenu_item.price %>
+                                                                <%=  form.submit "Add", class: "btn btn-success" %>
+                                                    <% end %>
+
+
+
+
+
+
                                             </p>
+
                                         </strong>
+
                                 </div>
+
                 </div>
+
     </div>
 <% end %>
 <% end %>
 <% end %>
-</div>
