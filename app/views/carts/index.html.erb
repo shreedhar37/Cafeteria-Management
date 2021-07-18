@@ -1,0 +1,18 @@
+<div class="table-responsive">
+  <table class="table table-hover table-bordered ">
+        <tr>
+        <th>Order Item Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Added on</th>
+        </tr>
+  <% @cart.order(:updated_at).each  do |item| %>
+        <tr>
+          <td><%= item.submenu_items_description %></td>
+          <td><%= item.quantity.to_s %></td>
+          <td><%=  "$" + item.submenu_item_price.to_s %></td>
+          <td><%= item.updated_at.to_s(:long_ordinal) + " IST" %></td>
+        </tr>
+  <% end%>
+  </table>
+</div>

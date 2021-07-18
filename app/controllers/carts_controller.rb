@@ -1,5 +1,7 @@
 class CartsController < ApplicationController
   def show
+    @cart = Cart.where(:user_id => params[:id])
+    render :index
   end
 
   def create
