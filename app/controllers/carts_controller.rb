@@ -1,11 +1,44 @@
 class CartsController < ApplicationController
   def show
     if @user
-      if @cart
-        render :index
+      @cart = Cart.where(:user_id => params[:id])
+      @cart_sum = Cart.where(:user_id => params[:id]).sum(:submenu_item_price)
+      render :index
+    else
+      redirect_to "/"
+    end
+  end
+
+  def addq
+    if @user
+      cart_item = Cart.find(params[:id])
+      submenu_item = SubmenuItem.find(cart_item.submenu_items_id)
+      if cart_item.present?
+        cart_item.quantity += 1
+        cart_item.submenu_item_price = submenu_item.price * cart_item.quantity
+        cart_item.save
+        redirect_to "/carts/" + session[:current_user_id].to_s
       else
-        @cart = Cart.where(:user_id => params[:id])
-        render :index
+        redirect_to "/carts/" + session[:current_user_id].to_s
+      end
+    else
+      redirect_to "/"
+    end
+  end
+
+  def removeq
+    if @user
+      cart_item = Cart.find(params[:id])
+      submenu_item = SubmenuItem.find(cart_item.submenu_items_id)
+      if cart_item.present?
+        cart_item.quantity -= 1
+        if cart_item.quantity > 0
+          cart_item.submenu_item_price = submenu_item.price * cart_item.quantity
+          cart_item.save
+          redirect_to "/carts/" + session[:current_user_id].to_s
+        end
+      else
+        redirect_to "/carts/" + session[:current_user_id].to_s
       end
     else
       redirect_to "/"

@@ -15,12 +15,14 @@ Rails.application.routes.draw do
   get "users/update_user", to: "owners#update_user"
   put "users/update", to: "users#update"
 
+  put "carts/addq/", to: "carts#addq"
+  put "carts/removeq", to: "carts#removeq"
   resources :carts
   resources :orders
   resources :order_items
   resources :submenu_items
   resources :users
   resources :owners
-
+  resources :checkout
   delete "logout", to: "sessions#destroy"
 end
