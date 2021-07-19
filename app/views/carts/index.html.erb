@@ -12,15 +12,16 @@
     <% end %>
 </div>
 
+<% if @cart.present? %>
 <div class="table-responsive ">
-  <table class="table table-hover table-bordered ">
+      <table class="table table-hover table-bordered ">
         <tr>
         <th>Item Name</th>
         <th>Quantity</th>
         <th>Price</th>
         <th>Added on</th>
         </tr>
-  <% @cart.each  do |item| %>
+      <% @cart.each  do |item| %>
         <tr >
           <td>
               <%= item.submenu_items_description %>
@@ -54,14 +55,24 @@
         </tr>
   <% end%>
   </table>
-  <div class="d-flex align-items-center justify-content-center ">
-  <strong class="checkout">Total amount to pay: $ <%= @cart_sum %> </strong>
-               <%= button_to  "Checkout",
+  </div>
+ <% else %>
+  <h2  class="text-center alert-danger "> Opps! no items </h2>
+<% end %>
 
+
+<div class="d-flex align-items-center justify-content-center ">
+  <% if @cart_sum != 0%>
+      <strong class="checkout">
+            Total amount to pay: $ <%= @cart_sum %>
+      </strong>
+            <%= button_to  "Checkout",
+                                           orders_path,
                                             class:"m-2 btn btn-success",
                                             data: { confirm: "Are you sure?"},
                                             method: "post"
-                                             %>
+            %>
 
-  </div>
+   <% end %>
+   </div>
 </div>

@@ -17,12 +17,15 @@ Rails.application.routes.draw do
 
   put "carts/addq/", to: "carts#addq"
   put "carts/removeq", to: "carts#removeq"
+
+  post "/order_items/create", to: "order_items#create"
+
   resources :carts
   resources :orders
   resources :order_items
   resources :submenu_items
   resources :users
   resources :owners
-  resources :checkout
+
   delete "logout", to: "sessions#destroy"
 end

@@ -14,7 +14,7 @@
 
 
 
-<div class= "cards-box">
+<div class= "cards-box m-auto w-auto">
     <p>
         <button class="btn btn-dark"
                         type="button"
@@ -47,9 +47,9 @@
     <div class="collapse  menu_item card"
             id=<%=  menu_item.name + submenu_item.menu_item_id.to_s  %>
     >
-                <div class="d-flex card-body flex-wrap ">
+                <div class="d-flex card-body flex-wrap">
                                 <div class="cards-content" >
-                                        <%= image_tag "/assets/cake.jpg",class:" cards-image img-responsive rounded" %>
+                                        <%# <%= image_tag "/assets/cake.jpg",class:" cards-image img-responsive rounded" %>
                                         <strong>
                                             <p id="description" class= "text cards-description"  >
                                                     <%=  submenu_item.description %>
