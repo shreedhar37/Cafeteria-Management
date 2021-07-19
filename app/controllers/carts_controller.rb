@@ -29,8 +29,8 @@ class CartsController < ApplicationController
   def removeq
     if @user
       cart_item = Cart.find(params[:id])
-      submenu_item = SubmenuItem.find(cart_item.submenu_items_id)
       if cart_item.present?
+        submenu_item = SubmenuItem.find(cart_item.submenu_items_id)
         cart_item.quantity -= 1
         if cart_item.quantity > 0
           cart_item.submenu_item_price = submenu_item.price * cart_item.quantity
@@ -61,17 +61,32 @@ class CartsController < ApplicationController
     end
   end
 
+  def update
+    submenu_item = SubmenuItem.find(@cart.submenu_items_id)
+    @cart.quantity += 1
+    @cart.submenu_item_price = submenu_item.price * @cart.quantity
+    if @cart.save
+      flash[:notice] = params[:quantity].to_s + " " + params[:submenu_items_description] + " added to cart."
+    end
+  end
+
   def create
     if @user
-      parameters = cart_params()
-      parameters[:submenu_item_price] = parameters[:submenu_item_price].to_f * parameters[:quantity].to_f
-      @cart = Cart.new(parameters)
-      if @cart.save
-        flash[:notice] = params[:quantity].to_s + " " + params[:submenu_items_description] + " added to cart."
+      @cart = Cart.find_by(:submenu_items_id => params[:submenu_items_id])
+      if @cart
+        update()
         redirect_to submenu_items_path
       else
-        flash[:alert] = "We are sorry, something went wrong."
-        redirect_to submenu_items_path
+        parameters = cart_params()
+        parameters[:submenu_item_price] = parameters[:submenu_item_price].to_f * parameters[:quantity].to_f
+        @cart = Cart.new(parameters)
+        if @cart.save
+          flash[:notice] = params[:quantity].to_s + " " + params[:submenu_items_description] + " added to cart."
+          redirect_to submenu_items_path
+        else
+          flash[:alert] = "We are sorry, something went wrong."
+          redirect_to submenu_items_path
+        end
       end
     else
       render :"sessions/new"
