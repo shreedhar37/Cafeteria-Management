@@ -20,7 +20,7 @@
         <th>Price</th>
         <th>Added on</th>
         </tr>
-  <% @cart.order(:updated_at).each  do |item| %>
+  <% @cart.each  do |item| %>
         <tr >
           <td>
               <%= item.submenu_items_description %>
