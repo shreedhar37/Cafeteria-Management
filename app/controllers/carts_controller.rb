@@ -1,8 +1,12 @@
 class CartsController < ApplicationController
   def show
     if @user
-      @cart = Cart.where(:user_id => params[:id])
-      render :index
+      if @cart
+        render :index
+      else
+        @cart = Cart.where(:user_id => params[:id])
+        render :index
+      end
     else
       redirect_to "/"
     end
