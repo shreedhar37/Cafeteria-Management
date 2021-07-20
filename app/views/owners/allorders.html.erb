@@ -44,7 +44,7 @@
                          <% else %>
                                 <td class="text-danger">
                                         Not Delivered
-                                <%= button_to  "change",
+                                <%= button_to  "mark as delivered",
                                             "/order_items/update",
                                             params: {id: item.id},
                                             class:"m-2 btn btn-success",

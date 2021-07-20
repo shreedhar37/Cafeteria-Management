@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get "users/show", to: "users#show"
 
   get "owners/sign_in", to: "sessions#new"
+  get "/owners/show_to_owner", to: "owners#show_to_owner"
+  get "/owners/addmenu", to: "owners#addmenu"
   post "owners/sign_in", to: "sessions#create"
 
   get "users/delete_user", to: "owners#delete_user"
@@ -18,13 +20,16 @@ Rails.application.routes.draw do
   put "carts/addq/", to: "carts#addq"
   put "carts/removeq", to: "carts#removeq"
 
-  get "/owners/show_to_owner", to: "owners#show_to_owner"
   post "/order_items/create", to: "order_items#create"
 
   put "/order_items/update", to: "order_items#update"
+
+  post "/menu_category/create", to: "menu_category#create"
+
   resources :carts
   resources :orders
   resources :order_items
+  resources :menu_category
   resources :submenu_items
   resources :users
   resources :owners

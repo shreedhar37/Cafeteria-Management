@@ -33,4 +33,12 @@ class OwnersController < ApplicationController
       render :"owners/allorders"
     end
   end
+
+  def addmenu
+    if @owner
+      render :addmenu
+    else
+      redirect_to "/"
+    end
+  end
 end
