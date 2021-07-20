@@ -9,5 +9,6 @@ class User < ApplicationRecord
   has_many :order
   has_many :order_items
   has_many :cart
-  validates :email, :password, presence: true
+  validates :email, uniqueness: { case_sensitive: false }, presence: true
+  validates :password, presence: true
 end
