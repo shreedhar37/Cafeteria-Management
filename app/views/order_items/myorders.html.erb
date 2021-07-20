@@ -16,15 +16,15 @@
         <div class="table-responsive ">
                 <table class="table table-hover table-bordered ">
                         <tr>
-                        <th>Order ID </th>
+                        <th>Order Item ID </th>
                         <th>Item Name</th>
                         <th>Quantity</th>
                         <th>Price</th>
                         <th>Order Date</th>
                         </tr>
-                <% @order_items.each  do |item| %>
+                <% @order_items.order(:submenu_items_description).each  do |item| %>
                         <tr>
-                        <td> <%=item.order_id %> </td>
+                        <td> <%=item.id %> </td>
                         <td> <%= item.submenu_items_description %> </td>
                         <td> <%= item.quantity.to_s %> </td>
                         <td> <%=  "$" + item.submenu_item_price.to_s %></td>

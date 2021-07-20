@@ -1,11 +1,9 @@
 class OrderItemsController < ApplicationController
-  skip_before_action :verify_authenticity_token
-
   def show
     if @user
       order_id = Order.where(:user_id => session[:current_user_id])
       @order_items = OrderItem.where(:order_id => order_id.ids)
-      render :index
+      render :myorders
     else
       redirect_to "/"
     end
