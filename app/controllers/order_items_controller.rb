@@ -9,10 +9,21 @@ class OrderItemsController < ApplicationController
     end
   end
 
-  def show_to_owner
+  def update
     if @owner
-      @order_items = OrderItem.all
-      render :"owners/allorders"
+      id = params[:id]
+      if id.present?
+        order_item = OrderItem.find(id)
+        order_item.delivered = true
+        order_item.save
+        flash[:notice] = "Order Item ID " + order_item.id.to_s + " changed to delivered."
+        redirect_to "/owners/show_to_owner"
+      else
+        flash[:alert] = "Unable to find order!!"
+        render :"owners/allorders"
+      end
+    else
+      redirect_to "/"
     end
   end
 

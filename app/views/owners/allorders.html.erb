@@ -1,10 +1,5 @@
 <div class="container text-center ">
-    <% if flash[:alert] %>
-    <div class= "alert alert-danger ">
-            <%= flash[:alert] %>
-    </div>
-            <% flash.clear %>
-    <% elsif flash[:notice] %>
+    <% if flash[:notice] %>
     <div class= "alert alert-success ">
             <%= flash[:notice] %>
             <% flash.clear %>
@@ -12,7 +7,7 @@
     <% end %>
 </div>
 
-<% if @order_items.present? %>
+<% if @orders.present? %>
         <div class="table-responsive ">
                 <table class="table table-hover table-bordered ">
                         <tr>
@@ -25,7 +20,7 @@
                         <th>Order Date</th>
                         <th>Order Delivery Status </th>
                         </tr>
-                <% @order_items.order(:submenu_items_description).each  do |item| %>
+                <% @orders.order(:submenu_items_description).each  do |item| %>
                         <tr>
                         <td> <%= item.order_id %> </td>
 
@@ -47,7 +42,15 @@
                         <% if item.delivered %>
                                 <td class="text-success"> Delivered on  <%= item.updated_at.to_s(:long_ordinal) + " IST" %></td>
                          <% else %>
-                                <td class="text-danger"> Not Delivered </td>
+                                <td class="text-danger">
+                                        Not Delivered
+                                <%= button_to  "change",
+                                            "/order_items/update",
+                                            params: {id: item.id},
+                                            class:"m-2 btn btn-success",
+                                            method: "put"
+                                             %>
+                                </td>
                          <% end %>
                 </tr>
                 <% end%>

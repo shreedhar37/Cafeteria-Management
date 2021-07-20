@@ -26,4 +26,11 @@ class OwnersController < ApplicationController
       redirect_to "/"
     end
   end
+
+  def show_to_owner
+    if @owner
+      @orders = OrderItem.all
+      render :"owners/allorders"
+    end
+  end
 end
