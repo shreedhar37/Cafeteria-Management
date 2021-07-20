@@ -20,23 +20,24 @@
         <button class="btn btn-dark"
                         type="button"
                         data-bs-toggle="collapse"
-                         data-bs-target= <%= "#" + menu_category_name  + menu_category_id.to_s %>
+                         data-bs-target= <%= "#" + "a" + menu_category_id.to_s %>
                         aria-expanded="false"
-                        aria-controls=<%= "#" + menu_category_name  + menu_category_id.to_s %>
+                        aria-controls=<%= "#" + "a" + menu_category_id.to_s %>
         >
             <%= menu_category_name %>
         </button>
     </p>
 
-<% menu_items.order(:menu_item_name).each do |menu_item| %>
-<div class="collapse card " id=<%= menu_category_name  + menu_category_id.to_s %>>
+<% menu_items.each do |menu_item| %>
+<% if menu_category_id  == menu_item.menu_category_id %>
+<div class="collapse card " id=<%=  "a" + menu_category_id.to_s %>>
         <p>
             <button class="btn btn-warning"
                             type="button"
                             data-bs-toggle="collapse"
-                            data-bs-target= <%="#"+  menu_item.menu_item_name + menu_item.id.to_s %>
+                            data-bs-target= <%="#"+ "a" + menu_item.id.to_s %>
                             aria-expanded="false"
-                            aria-controls=<%= menu_item.menu_item_name + menu_item.id.to_s   %>
+                            aria-controls=<%=   menu_item.id.to_s   %>
             >
             <%= menu_item.menu_item_name %>
             </button>
@@ -46,7 +47,7 @@
 <% submenu_items.order(:price).each do | submenu_item|  %>
  <% if menu_item.id == submenu_item.menu_item_id %>
     <div class="collapse  menu_item card"
-            id=<%=  menu_item.menu_item_name + submenu_item.menu_item_id.to_s  %>
+            id=<%=    "a" + submenu_item.menu_item_id.to_s  %>
     >
                 <div class="d-flex card-body flex-wrap">
                                 <div class="cards-content" >
@@ -75,6 +76,7 @@
                                 </div>
                 </div>
     </div>
+<% end %>
 <% end %>
 <% end %>
 <% end %>
