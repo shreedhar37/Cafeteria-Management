@@ -9,6 +9,13 @@ class OrderItemsController < ApplicationController
     end
   end
 
+  def show_to_owner
+    if @owner
+      @order_items = OrderItem.all
+      render :"owners/allorders"
+    end
+  end
+
   def create
     if @user
       @cart = Cart.where(:user_id => session[:current_user_id])

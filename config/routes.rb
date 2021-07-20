@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   put "carts/addq/", to: "carts#addq"
   put "carts/removeq", to: "carts#removeq"
 
+  get "/order_items/show_to_owner", to: "order_items#show_to_owner"
   post "/order_items/create", to: "order_items#create"
 
   resources :carts
