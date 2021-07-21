@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   def destroy
     if @owner
       id = params[:id]
-      user = User.find_by(id: id)
+      user = User.find_by("id=?", id)
       if user.present?
         user.destroy
         flash[:notice] = "User deleted Successfully"
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   def update
     if @owner
       id = params[:id]
-      user = User.find_by(id: id)
+      user = User.find_by("id=?", id)
       if user.present?
         user.first_name = params[:first_name].capitalize
         user.last_name = params[:last_name].capitalize

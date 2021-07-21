@@ -1,8 +1,8 @@
 class CartsController < ApplicationController
   def show
     if @user
-      @cart = Cart.where(:user_id => params[:id])
-      @cart_sum = Cart.where(:user_id => params[:id]).sum(:submenu_item_price)
+      @cart = Cart.where("user_id =?", params[:id])
+      @cart_sum = Cart.where("user_id=?", params[:id]).sum(:submenu_item_price)
       render :index
     else
       redirect_to "/"

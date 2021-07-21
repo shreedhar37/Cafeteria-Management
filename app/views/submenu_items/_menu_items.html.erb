@@ -15,7 +15,7 @@
 
 
 
-<div class= "cards-box m-auto w-auto">
+<div class= "cards-box m-auto w-auto" id = "menu_category">
     <p>
         <button class="btn btn-dark"
                         type="button"
@@ -30,14 +30,14 @@
 
 <% menu_items.each do |menu_item| %>
 <% if menu_category_id  == menu_item.menu_category_id %>
-<div class="collapse card " id=<%=  "a" + menu_category_id.to_s %>>
+<div class="collapse card " id=<%=  "a" + menu_item.menu_category_id.to_s %>>
         <p>
             <button class="btn btn-warning"
                             type="button"
                             data-bs-toggle="collapse"
-                            data-bs-target= <%="#"+ "a" + menu_item.id.to_s %>
+                            data-bs-target= <%="#"+ "b" + menu_item.id.to_s %>
                             aria-expanded="false"
-                            aria-controls=<%=   menu_item.id.to_s   %>
+                            aria-controls=<%=  "#" + "b" + menu_item.id.to_s   %>
             >
             <%= menu_item.menu_item_name %>
             </button>
@@ -47,7 +47,7 @@
 <% submenu_items.order(:price).each do | submenu_item|  %>
  <% if menu_item.id == submenu_item.menu_item_id %>
     <div class="collapse  menu_item card"
-            id=<%=    "a" + submenu_item.menu_item_id.to_s  %>
+            id=<%=    "b" + menu_item.id.to_s  %>
     >
                 <div class="d-flex card-body flex-wrap">
                                 <div class="cards-content" >
@@ -80,3 +80,4 @@
 <% end %>
 <% end %>
 <% end %>
+</div>
