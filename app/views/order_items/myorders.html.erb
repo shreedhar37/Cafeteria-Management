@@ -23,13 +23,13 @@
                         <th>Order Date</th>
                         <th>Order Delivery Status </th>
                         </tr>
-                <% @order_items.order(:submenu_items_description).each  do |item| %>
+                <% @order_items.order(:delivered).each  do |item| %>
                         <tr>
                         <td> <%=item.id %> </td>
                         <td> <%= item.submenu_items_description %> </td>
                         <td> <%= item.quantity.to_s %> </td>
                         <td> <%=  "$" + item.submenu_item_price.to_s %></td>
-                        <td> <%= item.updated_at.to_s(:long_ordinal) + " IST" %> </td>
+                        <td> <%= item.created_at.to_s(:long_ordinal) + " IST" %> </td>
                         <% if item.delivered %>
                                 <td class="text-success"> Delivered on  <%= item.updated_at.to_s(:long_ordinal) + " IST" %></td>
                          <% else %>
