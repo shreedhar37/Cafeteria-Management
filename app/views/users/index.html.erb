@@ -46,15 +46,15 @@
                                             method:"delete"
                 %>
                 </td>
-                <td class="">
-                <%= link_to  "-",
+                <td class="d-flex align-items-center">
+                <%= button_to  "-",
                                             "/carts/removeq",
                                             params: {id: item.id},
                                             class:"m-2 btn btn-danger",
                                             method: "put"
                                              %>
                 <%= item.quantity.to_s %>
-                <%= link_to  "+",
+                <%= button_to  "+",
                                             "/carts/addq",
                                             params: {id: item.id},
                                             class:"m-2 btn btn-success",
