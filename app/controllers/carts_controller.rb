@@ -41,10 +41,10 @@ class CartsController < ApplicationController
       if cart_item.present?
         flash[:notice] = cart_item.submenu_items_description + " removed."
         cart_item.destroy
-        redirect_to "/carts/" + session[:current_user_id].to_s
+        redirect_to submenu_items_path
       else
         flash[:alert] = "Sorry, unable to find the your order."
-        redirect_to "/carts/" + session[:current_user_id].to_s
+        redirect_to submenu_items_path
       end
     else
       redirect_to "/"
