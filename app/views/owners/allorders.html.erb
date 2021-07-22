@@ -28,8 +28,8 @@
 
                         <td>
                                 <% user_id = item.select_user(item.order_id)%>
-                                <% user_id = item.find_user(user_id) %>
-                                <%= user_id.first_name + " " + user_id.last_name  %>
+                                <% user_id = item.find_user(user_id) if user_id.present? %>
+                                <%= user_id.first_name + " " + user_id.last_name   if user_id.present? %>
                         </td>
 
                         <td> <%= item.submenu_items_description %> </td>

@@ -16,7 +16,12 @@ class UsersController < ApplicationController
       id = params[:id]
       user = User.find_by("id=?", id)
       if user.present?
+        order_id = Order.where(user_id: user.id)
+        OrderItem.where(order_id: order_id.ids).destroy_all
+        Cart.where(user_id: user.id).destroy_all
+        order_id.destroy_all
         user.destroy
+        session[:current_user_id] = nil
         flash[:notice] = "User deleted Successfully"
         render :"owners/delete_user"
       else
