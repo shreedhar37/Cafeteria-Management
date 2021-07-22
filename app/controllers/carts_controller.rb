@@ -1,14 +1,4 @@
 class CartsController < ApplicationController
-  def show
-    if @user
-      @cart = Cart.where("user_id =?", params[:id])
-      @cart_sum = Cart.where("user_id=?", params[:id]).sum(:submenu_item_price)
-      render :index
-    else
-      redirect_to "/"
-    end
-  end
-
   def addq
     if @user
       cart_item = Cart.find(params[:id])
@@ -17,9 +7,9 @@ class CartsController < ApplicationController
         cart_item.quantity += 1
         cart_item.submenu_item_price = submenu_item.price * cart_item.quantity
         cart_item.save
-        redirect_to "/carts/" + session[:current_user_id].to_s
+        redirect_to submenu_items_path
       else
-        redirect_to "/carts/" + session[:current_user_id].to_s
+        redirect_to submenu_items_path
       end
     else
       redirect_to "/"
@@ -35,10 +25,10 @@ class CartsController < ApplicationController
         if cart_item.quantity > 0
           cart_item.submenu_item_price = submenu_item.price * cart_item.quantity
           cart_item.save
-          redirect_to "/carts/" + session[:current_user_id].to_s
+          redirect_to submenu_items_path
         end
       else
-        redirect_to "/carts/" + session[:current_user_id].to_s
+        redirect_to submenu_items_path
       end
     else
       redirect_to "/"

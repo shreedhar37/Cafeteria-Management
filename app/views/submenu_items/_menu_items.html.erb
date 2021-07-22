@@ -61,7 +61,7 @@
                                             </p>
 
                                             <p class="cards-amount">
-                                                    <%= form_with model:@cart, url: "/carts", class: "add-cart-form" do |form| %>
+                                                    <%= form_with  url: "/carts", class: "add-cart-form" do |form| %>
                                                                 <%= form.hidden_field :user_id, value: session[:current_user_id] %>
                                                                 <%= form.hidden_field :submenu_items_id, value:  submenu_item.id %>
                                                                 <%= form.hidden_field :submenu_items_description, value:  submenu_item.description %>

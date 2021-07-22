@@ -1,6 +1,6 @@
 
 .cards-box{
-  max-width: 1150px;
+  max-width: 1130px;
 }
 .cards {
   display: flex;
@@ -39,4 +39,11 @@
 
 .checkout{
   margin-right:2rem;
+}
+
+.carts{
+    margin:0 auto;
+    max-width:max-content;
+    border: 3px solid #000000;
+
 }

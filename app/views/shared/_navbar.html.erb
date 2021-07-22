@@ -13,9 +13,6 @@
                <% if session[:current_user_id] || session[:current_owner_id]  %>
                           <% role = session[:current_user_id].present? ? @user : @owner %>
                           <% if role.present? && role.role == "User" %>
-                                <li class="nav-item">
-                                    <%= link_to "My Cart",  carts_path+ "/" +  session[:current_user_id].to_s , class:"btn btn-dark", method:"get" %>
-                                </li>
                                  <li class="nav-item">
                                     <%= link_to "My Orders",  order_items_path + "/" +  session[:current_user_id].to_s , class:"btn btn-dark", method:"get" %>
                                 </li>
