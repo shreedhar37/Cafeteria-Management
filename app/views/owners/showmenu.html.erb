@@ -1,0 +1,23 @@
+<div class="table-responsive ">
+                <table class="table table-hover table-bordered ">
+                        <tr>
+                        <th> Menu Category Name </th>
+                        <th>Menu Item Name </th>
+                        <th>Submenu Item Description</th>
+                        <th>Submenu Item Price </th>
+                        </tr>
+                <% @menu_categories.order(:id).each  do |menu| %>
+                        <tr>
+                        <td> <%= menu.name %> </td>
+                        <% menu_item = menu.find_menuitem(menu.id) %>
+
+                        <td> <%= menu_item.menu_item_name %> </td>
+                        <% submenu_item = menu_item.find_submenu_item(menu_item.id) %>
+
+                        <td> <%= submenu_item.description %> </td>
+
+                        <td> $ <%= submenu_item.price %> </td>
+                      </tr>
+                <% end%>
+                </table>
+</div>

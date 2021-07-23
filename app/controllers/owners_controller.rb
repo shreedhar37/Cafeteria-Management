@@ -34,6 +34,15 @@ class OwnersController < ApplicationController
     end
   end
 
+  def show_menu
+    if @owner
+      @menu_categories = MenuCategory.all
+      render :showmenu
+    else
+      redirect_to "/"
+    end
+  end
+
   def addmenu
     if @owner
       render :addmenu

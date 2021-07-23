@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   get "owners/sign_in", to: "sessions#new"
   get "/owners/show_to_owner", to: "owners#show_to_owner"
+  get "/owners/showmenu", to: "owners#show_menu"
   get "/owners/addmenu", to: "owners#addmenu"
   post "owners/sign_in", to: "sessions#create"
 
