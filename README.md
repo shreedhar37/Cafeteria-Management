@@ -18,8 +18,7 @@ The admin can see all the users. Perform CRUD operations on them. Admin can add 
 The Clerk has all same previleges that admin has, except the creating and updating the user and adding new food items in the menu
 However, this personna is yet to be created. 
 
-# App link 
-https://shreedhar-cafeteria-saas-201.herokuapp.com
+
 
 ## Author
 
